@@ -37,9 +37,11 @@
         "phpro/grumphp": "^0.15.2",
         "symfony/debug-pack": "*",
         "symfony/maker-bundle": "^1.0",
+        "symfony/phpunit-bridge": "4.2.*",
         "symfony/profiler-pack": "*",
         "symfony/test-pack": "*",
-        "symfony/web-server-bundle": "4.2.*"
+        "symfony/web-server-bundle": "4.2.*",
+        "phpunit/phpunit": "^4.8"
     },
     "config": {
         "preferred-install": {
