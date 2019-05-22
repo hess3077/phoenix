@@ -9,7 +9,7 @@ env:
 
 script:
    - composer install
-   - ./bin/phpunit
+   - vendor/phpunit/phpunit/phpunit
 
 before_script:
   - cp .env.test .env
