@@ -1,0 +1,34 @@
+language: php
+php:
+  - '7.1'
+
+env:
+  global:
+    - GITHUB_REPO: "hess3077/phoenix"
+    - secure: "SfKnd2q/Pr3oBfgf8lZNGhVa1K48AkcMFO3tJp/N6JgMyJtEfvNoj23+B6XBApfY+kr9bgOXve6Kz6Rp+q/6dvufSU8cdLBxXmIaZSvoprZr0+lCUnc0zxTzIHrW9ouciRarOuag5YWwH5PSO23XsAFhK4DS0vuFJBILQBdCmgTVXdqFaPABfm9b5I5Idgq4qua4ZjuNx8QkYnLKaSNsqurWHg8nyn5aGWKPMJwCRxtXgGJVVOUFvL/L1JjqcU7zgwGrpnQ3KFQ8gr+QRPtRMXItGYXcHTGz6jf78VF+PeP5M57vcTxLjW1awohLCjASE1816gzL7mTaKirk+K3Ztk5hdqrQQc1rIKX+ojJkaaisf3rqI//f5ZejQktwDN8JLNNUIMnFQi8AMQd9ZD0IILXyehD+lCrt+POmZoidjFPuO6RPA0vTrA2IHDsCoukyJ8k4tMbixBGqvPpsa78BbLQfBDmGjT60L92zSz5NaKRfTB97BrThfEeJr7OrhouFgcH6cgqFNJoXCm2Oaj7hBYpppWJazk/2jI2axSbBwcm1iLXAe7cdDtxREvbGC/pIi06dkvFiSnaNCDlrD1UqgqXAr2r1rw43XYOb/wYpyowC1deZ9BV8/cJhEiXgPVrn5DZq0ORI5dj4K/3Pi95Gj7JPhbEIVry4grxsZHexylg="
+
+script:
+   - composer install
+   - vendor/bin/phpunit
+
+before_script:
+  - composer install --no-progress
+after_success:
+  - vendor/bin/couscous travis-auto-deploy
+
+notifications:
+  irc:
+    template:
+      - "%{repository_slug}#%{build_number} (%{branch} - %{commit} : %{author}): %{message}"
+      - "Change view : %{compare_url}"
+      - "Build details : %{build_url}"
+  email:
+    recipients:
+      - hess.website@gmail.com
+    on_success: change
+    on_failure: always
+  slack:
+    template:
+      - "Build <%{build_url}|#%{build_number}: %{commit_subject}> (<%{compare_url}|%{commit}>) of %{repository_slug}@%{branch} by %{author} %{result} in %{duration}"
+    rooms:
+      - hess-kn:FsAjzGENr3KPZr8p6TC7dDVV#general
