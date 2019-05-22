@@ -12,6 +12,7 @@ script:
    - vendor/bin/phpunit
 
 before_script:
+  - cp .env.test .env
   - composer install --no-progress
 after_success:
   - vendor/bin/couscous travis-auto-deploy
