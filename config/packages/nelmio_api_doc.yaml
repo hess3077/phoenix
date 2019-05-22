@@ -1,0 +1,19 @@
+nelmio_api_doc:
+    documentation:
+        host: localhost:1094
+        schemes: [http, https]
+        info:
+            title: Phoenix
+            description: L'application Phoenix est destiné à mettre à disposition des développeurs des fonctionnalités web 2.0, tel que l'utilisation des API / Système d'authentification à partir des réseaux sociaux / ...
+            version: 1.0.0
+        securityDefinitions:
+            Bearer:
+                type: apiKey
+                description: 'Value: Bearer {jwt}'
+                name: Authorization
+                in: header
+        security:
+            - Bearer: []
+        areas: # to filter documented areas
+            path_patterns:
+                - ^/api(?!/doc$) # Accepts routes under /api except /api/doc

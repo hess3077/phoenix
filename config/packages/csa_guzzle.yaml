@@ -1,0 +1,6 @@
+csa_guzzle:
+    clients:
+        # …
+        github_api:
+            config:
+                base_url: https://api.github.com
