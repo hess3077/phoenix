@@ -11,7 +11,7 @@ addons:
   sonarcloud:
     organization: "hess3077-github" # the key of the org you chose at step #3
     token:
-      secure: "VkPIi5BjfLJZ1G6yinvJrPZA23Phzk8s/rf1GmabHLm7gG/CuXXQycCfH0zvxNHTzippaqpI9H0iZTSQ3ydmyBEsMHS2lQ6Tlpg0RECmIOq7euLBH9iYEAz9ecaXMPg4ZZsaMtpOJVUngNtr/Fswqu2WbHCXF3wJjAPWe6BZAickihx/ybsQKGD0owP+X9Zda0kU6ywtXyVgOC9aa2NNvfsGLBZxLVAM48gMbQfgn9aS7btMc1QoUjUaCmdkTpUcgO6ODJNHlmTEqZpRGKnc9qcyZZ+520dS3xu4Brzm4NhLyLoeQwf8L7eqzVDyDV/yhXAR0JXbPPrLXCDa4tZafAxofAFBNtBC52GyLfcTPGZXLmEO6if8eFUGnwL6WTUWQzJBXNb4b78ELraL5Szwsc0+dQ3d/KoBPhcIJ3S6wbxLpl9VxmHZnYxCBouv8wk3hFiLeEKZ0q/pBNCa/2Kjzj8UgbRfAUPqbqjRbZfVxzpMh//lknfCPXGxLPlCoP3ZnP7SCmEnxLeJ2V5gvN3KK9SySlOB4xMovt4ldmA/bfkvLDihGOOqCq2+8IAvNjPh03F9evIhKB8I8G++L/Sje67xk6pDm50pWv9RjfN1K6/kqEs7C6Vh434C04RSqzbZITVz/NcHuDRoUVJSUkeyP49kjv13xYNxvYhibaEfezc=" # encrypted value of your token
+      secure: "Xe28gX2tsrgd7a8vYKJjG4oYd5cyyW70+VHb+7TJBWUQFcFjUTwfsxTGyhIdLjY6OswXFFSD2J2TW4ryMq3N6laTxQr1wiG8fVTobtV2NDi8ThE9TIkRBVYScx3lgLR0icP4y/+W7uzyAfwmKYiVZtmyzUVmsQ03rW1j9yE4kCFvAzxMEW8/jO6S3408OKYB3DxOMvZcpx45WhQuB/danSq0AH+2CHRNnfmLdQpO3tcZEMkbuVgTAd5Vs682d++4F90J1EyEs6/DZNib5vrLlhsU5Dzh7Ml89jD/Cw0tri7mXRc44xjpbBKglL+67QBfighzwZDMhl34NRr19+c/UyybZyE/PAs3bfAxMd+SpgRTWL4hFMuZHSkkzE/QGQ5AdwzcB26BILdUShge1XoVOw6SfpJdJ0cCxH/9ufeT1Ot061W3YWw5HYO9y7Mm2U8szzfaRpUWH4JvSRstB1vOpDOydkGdOGnGFbnok9Pq0Fd2eU6sWbA+XwxWiV0cNRtyRr31EsdHIcn7o+kzzQe8MZB9XUXCb4TMIozSQjCUvzmk1ykqODAgN7re41X4iGXw/oeEaWTN4QsL2GFG7AWHgvuEBjLFXlFd7PVrNef2II8m3mdw9hgS7ySRP+6Hs5gQXOzus///WZHozDq+2hM8P4MN6Rw2WTU7qi/PnLaEbwQ=" # encrypted value of your token
 
 script:
    - composer install
@@ -40,5 +40,3 @@ notifications:
       - "Build <%{build_url}|#%{build_number}: %{commit_subject}> (<%{compare_url}|%{commit}>) of %{repository_slug}@%{branch} by %{author} %{result} in %{duration}"
     rooms:
       - hess-kn:FsAjzGENr3KPZr8p6TC7dDVV#app-backend-center
-
-      
