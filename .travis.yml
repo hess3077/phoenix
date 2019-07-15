@@ -10,6 +10,7 @@ env:
 script:
    - composer install
    - vendor/phpunit/phpunit/phpunit
+   - sonar-scanner
 
 before_script:
   - cp .env.test .env
@@ -32,4 +33,4 @@ notifications:
     template:
       - "Build <%{build_url}|#%{build_number}: %{commit_subject}> (<%{compare_url}|%{commit}>) of %{repository_slug}@%{branch} by %{author} %{result} in %{duration}"
     rooms:
-      - hess-kn:FsAjzGENr3KPZr8p6TC7dDVV#general
+      - hess-kn:FsAjzGENr3KPZr8p6TC7dDVV#app-backend-center
