@@ -26,9 +26,9 @@ RUN curl -sSk https://getcomposer.org/installer | php -- --disable-tls && \
    mv composer.phar /usr/local/bin/composer
 
 # Quelques extesnions de php utiles
-RUN docker-php-ext-configure intl
-RUN docker-php-ext-install pdo pdo_mysql gd opcache intl zip calendar
-RUN pecl install apcu-5.1.5 && docker-php-ext-enable apcu
+#RUN docker-php-ext-configure intl
+#RUN docker-php-ext-install pdo pdo_mysql gd opcache intl zip calendar
+#RUN pecl install apcu-5.1.5 && docker-php-ext-enable apcu
 
 # On créé un utilisateur avec le même gid/uid que votre local
 # cela va permettre que les fichiers qui sont créés dans le contenaire auront vos droits
