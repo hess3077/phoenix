@@ -6,7 +6,12 @@ RUN echo "ServerName localhost" >> /etc/apache2/apache2.conf
 
 # Quelques library necessaires
 RUN apt-get update \
-    && apt-get install -y --no-install-recommends locales apt-utils git libicu-dev g++ libpng-dev;
+    && apt-get install -y --no-install-recommends vim curl debconf subversion git apt-transport-https apt-utils \
+    build-essential locales acl mailutils wget zip unzip \
+    gnupg gnupg1 gnupg2
+RUN docker-php-ext-install pdo pdo_mysql
+COPY php.ini /etc/php/7.2.3/php.ini
+COPY php-fpm-pool.conf /etc/php/7.2.3/pool.d/www.conf
 
 # les locales, toujours utiles
 RUN echo "en_US.UTF-8 UTF-8" > /etc/locale.gen && \

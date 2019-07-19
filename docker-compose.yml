@@ -1,41 +1,54 @@
 version: '3'
 services:
-    db:
-      image: mysql:5
-      ports:
-        - "3307:3306"
-      environment:
-        MYSQL_ALLOW_EMPTY_PASSWORD: 'yes'
-        MYSQL_USER: 'root'
-      volumes:
-        - /home/phoenix/docker/data/mysqlSf:/var/lib/mysql
-
-    maildev:
-        image: hess3077/maildev
+    apache:
+        build: .docker/apache
+        container_name: phoenix_apache
         ports:
-          - "8002:80"
+          - 80:80
+        volumes:
+          - .docker/config/vhosts:/etc/apache2/sites-enabled
+          - .:/home/wwwroot/phoenix
+        depends_on:
+          - php
+
+    mysql:
+        image: mysql:8
+        container_name: phoenix_mysql
+        volumes:
+            - .docker/data/db:/var/lib/mysql
+        command:
+            - "--default-authentication-plugin=mysql_native_password"
+            - "--lower_case_table_names=1"        
+        environment:
+            MYSQL_ROOT_PASSWORD: root
+            MYSQL_DATABASE: phoenix
+            MYSQL_USER: phoenix
+            MYSQL_PASSWORD: phoenix
+
+    php:
+        build: .docker/php
+        container_name: sf4_php
+        volumes:
+          - .:/home/wwwroot/sf4
+        environment:
+          - maildev_host=phoenix_maildev
+        depends_on:
+          - maildev
+          - mysql
 
     phpmyadmin:
         image: phpmyadmin/phpmyadmin
-        ports:
-            - "8080:80"
-        depends_on:
-            - db
+        container_name: phoenix_phpmyadmin
         environment:
-          PMA_HOST: db
-
-    php720:
-        build: docker/php72
+          PMA_HOST: mysql
+          PMA_PORT: 3306
         ports:
-          - "9072:80"
-        volumes:
-            - ./vhosts:/etc/apache2/sites-enabled
-            - /home/phoenix/docker/www:/var/www
+            - 8080:80
+        links:
+            - mysql
 
-    php710:
-        build: docker/php71
+    maildev:
+        image: hess3077/maildev
+        container_name: phoenix_maildev
         ports:
-          - "9071:80"
-        volumes:
-            - ./vhosts:/etc/apache2/sites-enabled
-            - /home/phoenix/docker/www:/var/www
+          - 8001:80
